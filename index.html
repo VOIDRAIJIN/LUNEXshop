@@ -14,6 +14,7 @@
 }
 
 body {
+    min-height: 100vh;
     background:
         linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
         url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97");
@@ -23,33 +24,41 @@ body {
 }
 
 /* NAV */
-.navbar {
+.nav {
     display: flex;
     justify-content: center;
     gap: 40px;
     padding: 30px;
-    font-size: 14px;
 }
 
-.navbar a {
+.nav a {
     color: white;
     text-decoration: none;
     opacity: 0.85;
 }
 
-.navbar a:hover {
+.nav a:hover {
     opacity: 1;
     text-decoration: underline;
 }
 
-/* CONTAINER */
+/* HIDDEN */
+.page {
+    display: none;
+}
+
+/* ACTIVE PAGE */
+.page.active {
+    display: block;
+}
+
+/* SHOP GRID */
 .container {
     max-width: 1300px;
     margin: 80px auto;
     padding: 0 40px;
 }
 
-/* SHOP GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -62,6 +71,7 @@ body {
     border-radius: 18px;
     padding: 30px;
     text-align: center;
+    cursor: pointer;
     transition: 0.3s;
 }
 
@@ -77,20 +87,10 @@ body {
     margin-bottom: 20px;
 }
 
-.card h3 {
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-/* PRODUCT PAGE ADD-ON */
+/* PRODUCT PAGE */
 .product-wrapper {
     max-width: 1200px;
-    margin: 160px auto;
+    margin: 80px auto;
     padding: 0 40px;
 }
 
@@ -101,15 +101,9 @@ body {
     align-items: center;
 }
 
-.product-image {
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    padding: 20px;
-}
-
 .product-image img {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 20px;
 }
 
 .product-info h1 {
@@ -118,45 +112,45 @@ body {
 }
 
 .price {
-    font-size: 18px;
     margin-bottom: 25px;
 }
 
-/* BUTTONS */
 .btn {
     width: 100%;
     padding: 14px;
     border-radius: 30px;
-    font-size: 14px;
     border: none;
+    font-size: 14px;
     cursor: pointer;
     margin-bottom: 15px;
 }
 
-.add-cart {
+.add {
     background: #3556e1;
     color: white;
 }
 
-.buy-now {
+.buy {
     background: white;
     color: black;
 }
 
-.btn:hover {
-    opacity: 0.9;
-}
-
-/* DESCRIPTION */
 .desc {
     font-size: 13px;
     opacity: 0.8;
     line-height: 1.6;
-    margin-top: 30px;
+    margin-top: 25px;
     white-space: pre-line;
 }
 
-/* RESPONSIVE */
+.back {
+    display: inline-block;
+    margin-bottom: 30px;
+    font-size: 13px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
 @media (max-width: 900px) {
     .product-grid {
         grid-template-columns: 1fr;
@@ -168,72 +162,101 @@ body {
 <body>
 
 <!-- NAV -->
-<div class="navbar">
-    <a href="#">Shop</a>
-    <a href="#">Watermarks</a>
-    <a href="#">Packs</a>
-    <a href="#">Contact</a>
+<div class="nav">
+    <a href="#shop">Shop</a>
+    <a href="#shop">Watermarks</a>
+    <a href="#shop">Packs</a>
+    <a href="#shop">Contact</a>
 </div>
 
-<!-- SHOP GRID -->
-<div class="container">
-    <div class="grid">
+<!-- SHOP PAGE -->
+<div id="shop" class="page active">
+    <div class="container">
+        <div class="grid">
 
-        <a href="#flylite" style="text-decoration:none;color:inherit;">
-            <div class="card">
+            <div class="card" onclick="go('flylite')">
                 <img src="https://via.placeholder.com/300x120?text=FLYLITE">
                 <h3>ENXO Flylite Pack (Aggressive)</h3>
                 <p>$10.00</p>
             </div>
-        </a>
 
-        <div class="card">
-            <img src="https://via.placeholder.com/300x120?text=WM">
-            <h3>Enxo Updated Dual WM</h3>
-            <p>$5.00</p>
+            <div class="card" onclick="go('dualwm')">
+                <img src="https://via.placeholder.com/300x120?text=DUAL+WM">
+                <h3>Enxo Dual Watermark</h3>
+                <p>$5.00</p>
+            </div>
+
+            <div class="card" onclick="go('swordwm')">
+                <img src="https://via.placeholder.com/300x120?text=SWORD+WM">
+                <h3>Enxo Sword Watermark</h3>
+                <p>$5.00</p>
+            </div>
+
         </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/300x120?text=SWORD">
-            <h3>Enxo Sword WM</h3>
-            <p>$5.00</p>
-        </div>
-
     </div>
 </div>
 
-<!-- PRODUCT DETAIL ADD-ON -->
-<div id="flylite" class="product-wrapper">
-    <div class="product-grid">
+<!-- PRODUCT: FLYLITE -->
+<div id="flylite" class="page">
+    <div class="product-wrapper">
+        <div class="back" onclick="go('shop')">← Back to Shop</div>
 
-        <div class="product-image">
-            <img src="https://via.placeholder.com/600x800?text=ENXO+FLYLITE+PACK">
-        </div>
+        <div class="product-grid">
+            <div class="product-image">
+                <img src="https://via.placeholder.com/600x800?text=FLYLITE+PACK">
+            </div>
 
-        <div class="product-info">
-            <h1>ENXO FLYLITE PACK (AGGRESSIVE)</h1>
-            <div class="price">$10.00</div>
+            <div class="product-info">
+                <h1>ENXO FLYLITE PACK (AGGRESSIVE)</h1>
+                <div class="price">$10.00</div>
 
-            <button class="btn add-cart">Add to Cart</button>
-            <button class="btn buy-now">Buy Now</button>
+                <button class="btn add">Add to Cart</button>
+                <button class="btn buy">Buy Now</button>
 
-            <div class="desc">
-NEW (FLYLITE CC)
-
+                <div class="desc">
 7 CCs  
-Astranic CC update + grain  
-3 main omnios  
-3 aggressive shakes  
-3 pannings + flicker  
-4 NEW main zooms  
-5 NEW effects  
-Main twixtors  
+Aggressive shakes  
+New zooms  
+FX included  
 EDIT PJF INCLUDED
+                </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<!-- PRODUCT: DUAL WM -->
+<div id="dualwm" class="page">
+    <div class="product-wrapper">
+        <div class="back" onclick="go('shop')">← Back to Shop</div>
+        <h1>ENXO Dual Watermark</h1>
+        <p>$5.00</p>
+    </div>
+</div>
+
+<!-- PRODUCT: SWORD WM -->
+<div id="swordwm" class="page">
+    <div class="product-wrapper">
+        <div class="back" onclick="go('shop')">← Back to Shop</div>
+        <h1>ENXO Sword Watermark</h1>
+        <p>$5.00</p>
+    </div>
+</div>
+
+<script>
+function go(page) {
+    location.hash = page;
+}
+
+function render() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const page = location.hash.replace('#','') || 'shop';
+    document.getElementById(page)?.classList.add('active');
+}
+
+window.addEventListener('hashchange', render);
+render();
+</script>
 
 </body>
 </html>
