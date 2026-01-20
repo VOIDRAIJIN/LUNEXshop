@@ -6,83 +6,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Arial", sans-serif;
+    font-family: Arial, sans-serif;
 }
 
-/* BACKGROUND */
 body {
-    min-height: 100vh;
-    background: 
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+    background:
+        linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
         url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97");
     background-size: cover;
     background-position: center;
-    color: #fff;
-}
-
-/* TOP BAR */
-.top-banner {
-    text-align: center;
-    padding: 10px;
-    font-size: 14px;
-    background: rgba(0,0,0,0.6);
-    letter-spacing: 1px;
+    color: white;
 }
 
 /* NAV */
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 60px;
-}
-
-.logo {
-    font-size: 22px;
-    letter-spacing: 3px;
-    font-weight: bold;
-}
-
-.nav-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #fff;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px;
     font-size: 14px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
     opacity: 0.85;
 }
 
-.nav-links a:hover {
+.navbar a:hover {
     opacity: 1;
     text-decoration: underline;
 }
 
-/* SHOP GRID */
+/* CONTAINER */
 .container {
     max-width: 1300px;
-    margin: 60px auto;
+    margin: 80px auto;
     padding: 0 40px;
 }
 
+/* SHOP GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 40px;
 }
 
-/* PRODUCT CARD */
 .card {
     background: rgba(0,0,0,0.55);
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 18px;
     padding: 30px;
     text-align: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
+    transition: 0.3s;
 }
 
 .card:hover {
@@ -91,17 +71,15 @@ body {
 }
 
 .card img {
-    max-width: 100%;
-    height: 130px;
+    width: 100%;
+    height: 140px;
     object-fit: contain;
     margin-bottom: 20px;
 }
 
 .card h3 {
     font-size: 15px;
-    font-weight: normal;
     margin-bottom: 10px;
-    opacity: 0.9;
 }
 
 .card p {
@@ -109,19 +87,79 @@ body {
     opacity: 0.8;
 }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px;
-    font-size: 12px;
-    opacity: 0.6;
+/* PRODUCT PAGE ADD-ON */
+.product-wrapper {
+    max-width: 1200px;
+    margin: 160px auto;
+    padding: 0 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.product-image {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.product-image img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.product-info h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+/* BUTTONS */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.add-cart {
+    background: #3556e1;
+    color: white;
+}
+
+.buy-now {
+    background: white;
+    color: black;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* DESCRIPTION */
+.desc {
+    font-size: 13px;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-top: 30px;
+    white-space: pre-line;
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -129,53 +167,73 @@ footer {
 
 <body>
 
-<div class="top-banner">
-    DISCOUNT CODE: XEN — 15% OFF ALL PRODUCTS
-</div>
-
+<!-- NAV -->
 <div class="navbar">
-    <div class="logo">XEN SHOP</div>
-    <div class="nav-links">
-        <a href="#">Shop</a>
-        <a href="#">Watermarks</a>
-        <a href="#">Packs</a>
-        <a href="#">Contact</a>
-    </div>
+    <a href="#">Shop</a>
+    <a href="#">Watermarks</a>
+    <a href="#">Packs</a>
+    <a href="#">Contact</a>
 </div>
 
+<!-- SHOP GRID -->
 <div class="container">
     <div class="grid">
 
+        <a href="#flylite" style="text-decoration:none;color:inherit;">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x120?text=FLYLITE">
+                <h3>ENXO Flylite Pack (Aggressive)</h3>
+                <p>$10.00</p>
+            </div>
+        </a>
+
         <div class="card">
-            <img src="https://via.placeholder.com/300x120?text=WM+Logo">
-            <h3>XEN Updated Full Dual WM</h3>
+            <img src="https://via.placeholder.com/300x120?text=WM">
+            <h3>Enxo Updated Dual WM</h3>
             <p>$5.00</p>
         </div>
 
         <div class="card">
-            <img src="https://via.placeholder.com/300x120?text=WM+Dual">
-            <h3>XEN Updated Dual Initial WM</h3>
+            <img src="https://via.placeholder.com/300x120?text=SWORD">
+            <h3>Enxo Sword WM</h3>
             <p>$5.00</p>
-        </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/300x120?text=Sword+WM">
-            <h3>XEN Updated Sword WM</h3>
-            <p>$5.00</p>
-        </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/300x120?text=Pack">
-            <h3>XEN Flylite Pack (Aggressive)</h3>
-            <p>$10.00</p>
         </div>
 
     </div>
 </div>
 
-<footer>
-    © 2026 XEN — All Rights Reserved
-</footer>
+<!-- PRODUCT DETAIL ADD-ON -->
+<div id="flylite" class="product-wrapper">
+    <div class="product-grid">
+
+        <div class="product-image">
+            <img src="https://via.placeholder.com/600x800?text=ENXO+FLYLITE+PACK">
+        </div>
+
+        <div class="product-info">
+            <h1>ENXO FLYLITE PACK (AGGRESSIVE)</h1>
+            <div class="price">$10.00</div>
+
+            <button class="btn add-cart">Add to Cart</button>
+            <button class="btn buy-now">Buy Now</button>
+
+            <div class="desc">
+NEW (FLYLITE CC)
+
+7 CCs  
+Astranic CC update + grain  
+3 main omnios  
+3 aggressive shakes  
+3 pannings + flicker  
+4 NEW main zooms  
+5 NEW effects  
+Main twixtors  
+EDIT PJF INCLUDED
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
