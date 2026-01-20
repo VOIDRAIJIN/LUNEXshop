@@ -2,117 +2,180 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>ENXO Shop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUNEX Editing Packs</title>
+
 <style>
-/* Reset */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat',sans-serif;}
-body {background:#0a0a0a; color:#fff; line-height:1.6;}
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
 
-/* Header */
-header {display:flex; justify-content:space-between; padding:20px 50px; background:#111; position:sticky; top:0; z-index:100;}
-header .logo {font-size:1.8rem; font-weight:700; color:#f5a623;}
-header nav a {margin-left:20px; text-decoration:none; color:#fff; font-weight:600; transition:0.3s;}
-header nav a:hover {color:#f5a623;}
+/* BACKGROUND */
+body {
+    min-height: 100vh;
+    background: 
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+        url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
 
-/* Hero Section */
-.hero {text-align:center; padding:120px 20px; background:linear-gradient(135deg,#f5a623,#ff416c); color:#fff;}
-.hero h1 {font-size:3rem; margin-bottom:20px;}
-.hero p {font-size:1.2rem; margin-bottom:40px;}
-.btn {background:#111; color:#fff; padding:12px 30px; border:none; border-radius:8px; cursor:pointer; font-weight:600; transition:0.3s;}
-.btn:hover {background:#f5a623; color:#111;}
+/* TOP BAR */
+.top-banner {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    background: rgba(0,0,0,0.6);
+    letter-spacing: 1px;
+}
 
-/* Packs Section */
-.packs {padding:80px 20px; text-align:center;}
-.pack-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-top:40px;}
-.pack-card {background:#111; padding:20px; border-radius:12px; transition:0.3s;}
-.pack-card:hover {transform:translateY(-10px); box-shadow:0 10px 20px rgba(245,166,35,0.5);}
-.pack-card img {width:100%; border-radius:12px; margin-bottom:15px;}
+/* NAV */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 60px;
+}
 
-/* About */
-.about {padding:80px 20px; background:#111; text-align:center;}
+.logo {
+    font-size: 22px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
 
-/* Contact */
-.contact {padding:80px 20px; text-align:center;}
-.contact form {display:flex; flex-direction:column; max-width:400px; margin:auto;}
-.contact input, .contact textarea {padding:12px; margin-bottom:20px; border-radius:8px; border:none;}
-.contact textarea {resize:none; height:120px;}
+.nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.85;
+}
 
-/* Footer */
-footer {text-align:center; padding:20px; background:#111; margin-top:40px; font-size:0.9rem; color:#777;}
+.nav-links a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
 
-/* Smooth scroll */
-html {scroll-behavior:smooth;}
+/* SHOP GRID */
+.container {
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+}
+
+/* PRODUCT CARD */
+.card {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px rgba(255,255,255,0.15);
+}
+
+.card img {
+    max-width: 100%;
+    height: 130px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 15px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.card p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">LUNEX</div>
-  <nav>
-    <a href="#packs">Packs</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<div class="top-banner">
+    DISCOUNT CODE: XEN — 15% OFF ALL PRODUCTS
+</div>
 
-<section class="hero">
-  <h1>Modern Editing Packs for Creators</h1>
-  <p>Level up your content with cinematic, trendy, and high-quality editing packs.</p>
-  <a href="#packs" class="btn">Browse Packs</a>
-</section>
-
-<section id="packs" class="packs">
-  <h2>Our Packs</h2>
-  <div class="pack-grid">
-    <div class="pack-card">
-      <img src="https://via.placeholder.com/300x200.png?text=Pack+1" alt="Pack 1">
-      <h3>Cinematic Pack Vol.1</h3>
-      <p>Perfect for dramatic edits and Instagram or TikTok content.</p>
-      <button class="btn">Buy Now</button>
+<div class="navbar">
+    <div class="logo">XEN SHOP</div>
+    <div class="nav-links">
+        <a href="#">Shop</a>
+        <a href="#">Watermarks</a>
+        <a href="#">Packs</a>
+        <a href="#">Contact</a>
     </div>
-    <div class="pack-card">
-      <img src="https://via.placeholder.com/300x200.png?text=Pack+2" alt="Pack 2">
-      <h3>XEN.AEP V1 Shake Pack</h3>
-      <p>Add life and shakes to your videos to make a cool ZENO style video that will blow peoples minds.</p>
-      <button class="btn">Buy Now</button>
-    </div>
-    <div class="pack-card">
-      <img src="https://via.placeholder.com/300x200.png?text=Pack+3" alt="Pack 3">
-      <h3>Transitions Pack</h3>
-      <p>Smooth, cinematic transitions for dynamic edits.</p>
-      <button class="btn">Buy Now</button>
-    </div>
-  </div>
-</section>
+</div>
 
-<section id="about" class="about">
-  <h2>About LUNEX</h2>
-  <p>We create editing packs for content creators who want to level up their social media game. Our packs are designed to be easy to use, professional, and visually stunning.</p>
-</section>
+<div class="container">
+    <div class="grid">
 
-<section id="contact" class="contact">
-  <h2>Contact Us</h2>
-  <form id="contactForm">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea placeholder="Your Message" required></textarea>
-    <button type="submit" class="btn">Send</button>
-  </form>
-</section>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x120?text=WM+Logo">
+            <h3>XEN Updated Full Dual WM</h3>
+            <p>$5.00</p>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/300x120?text=WM+Dual">
+            <h3>XEN Updated Dual Initial WM</h3>
+            <p>$5.00</p>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/300x120?text=Sword+WM">
+            <h3>XEN Updated Sword WM</h3>
+            <p>$5.00</p>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/300x120?text=Pack">
+            <h3>XEN Flylite Pack (Aggressive)</h3>
+            <p>$10.00</p>
+        </div>
+
+    </div>
+</div>
 
 <footer>
-  <p>&copy; 2026 LUNEX Editing Packs. All rights reserved.</p>
+    © 2026 XEN — All Rights Reserved
 </footer>
-
-<script>
-const form = document.getElementById('contactForm');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  alert('Thanks! We will contact you soon.');
-  form.reset();
-});
-</script>
 
 </body>
 </html>
