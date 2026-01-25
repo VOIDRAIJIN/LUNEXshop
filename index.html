@@ -2,159 +2,179 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ENXO Shop</title>
+<title>XEN Shop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-    min-height: 100vh;
-    background:
-        linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
-        url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97");
-    background-size: cover;
-    background-position: center;
-    color: white;
+  background: #000;
+  color: #fff;
 }
 
 /* NAV */
 .nav {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px;
+  font-size: 14px;
 }
 
 .nav a {
-    color: white;
-    text-decoration: none;
-    opacity: 0.85;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
 }
 
 .nav a:hover {
-    opacity: 1;
-    text-decoration: underline;
-}
-
-/* HIDDEN */
-.page {
-    display: none;
-}
-
-/* ACTIVE PAGE */
-.page.active {
-    display: block;
+  opacity: 1;
 }
 
 /* SHOP GRID */
 .container {
-    max-width: 1300px;
-    margin: 80px auto;
-    padding: 0 40px;
+  max-width: 1300px;
+  margin: 60px auto;
+  padding: 0 40px;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
 }
 
 .card {
-    background: rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 18px;
-    padding: 30px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
+  background: #0a0a0a;
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 30px rgba(255,255,255,0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(255,255,255,0.12);
 }
 
 .card img {
-    width: 100%;
-    height: 140px;
-    object-fit: contain;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 20px;
 }
 
-/* PRODUCT PAGE */
-.product-wrapper {
-    max-width: 1200px;
-    margin: 80px auto;
-    padding: 0 40px;
+.card h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
 }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+.card p {
+  font-size: 14px;
+  opacity: 0.8;
 }
 
-.product-image img {
-    width: 100%;
-    border-radius: 20px;
+/* PRODUCT OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
-.product-info h1 {
-    font-size: 28px;
-    margin-bottom: 15px;
+.overlay.active {
+  display: block;
+}
+
+.overlay-content {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 40px;
+}
+
+/* CLOSE */
+.close {
+  font-size: 14px;
+  opacity: 0.7;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+/* PRODUCT LAYOUT */
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* IMAGE SCROLLER */
+.images {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.images img {
+  width: 100%;
+  min-width: 100%;
+  border-radius: 16px;
+  scroll-snap-align: center;
+}
+
+/* INFO */
+.info h1 {
+  font-size: 26px;
+  margin-bottom: 15px;
 }
 
 .price {
-    margin-bottom: 25px;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
 .btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: 30px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 15px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 15px;
 }
 
 .add {
-    background: #3556e1;
-    color: white;
+  background: #3556e1;
+  color: #fff;
 }
 
 .buy {
-    background: white;
-    color: black;
+  background: #fff;
+  color: #000;
 }
 
 .desc {
-    font-size: 13px;
-    opacity: 0.8;
-    line-height: 1.6;
-    margin-top: 25px;
-    white-space: pre-line;
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-top: 25px;
+  white-space: pre-line;
 }
 
-.back {
-    display: inline-block;
-    margin-bottom: 30px;
-    font-size: 13px;
-    opacity: 0.7;
-    cursor: pointer;
-}
-
+/* MOBILE */
 @media (max-width: 900px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
+  .product {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -163,99 +183,101 @@ body {
 
 <!-- NAV -->
 <div class="nav">
-    <a href="#shop">Shop</a>
-    <a href="#shop">Watermarks</a>
-    <a href="#shop">Packs</a>
-    <a href="#shop">Contact</a>
+  <a href="#">Shop</a>
+  <a href="#">Watermarks</a>
+  <a href="#">Packs</a>
+  <a href="#">Contact</a>
 </div>
 
-<!-- SHOP PAGE -->
-<div id="shop" class="page active">
-    <div class="container">
-        <div class="grid">
+<!-- SHOP -->
+<div class="container">
+  <div class="grid">
 
-            <div class="card" onclick="go('flylite')">
-                <img src="https://via.placeholder.com/300x120?text=FLYLITE">
-                <h3>ENXO Flylite Pack (Aggressive)</h3>
-                <p>$10.00</p>
-            </div>
-
-            <div class="card" onclick="go('dualwm')">
-                <img src="https://via.placeholder.com/300x120?text=DUAL+WM">
-                <h3>Enxo Dual Watermark</h3>
-                <p>$5.00</p>
-            </div>
-
-            <div class="card" onclick="go('swordwm')">
-                <img src="https://via.placeholder.com/300x120?text=SWORD+WM">
-                <h3>Enxo Sword Watermark</h3>
-                <p>$5.00</p>
-            </div>
-
-        </div>
+    <div class="card" onclick="openProduct('flylite')">
+      <img src="https://via.placeholder.com/300x120?text=FLYLITE">
+      <h3>XEN Flylite Pack (Aggressive)</h3>
+      <p>$10.00</p>
     </div>
+
+    <div class="card" onclick="openProduct('dual')">
+      <img src="https://via.placeholder.com/300x120?text=DUAL+WM">
+      <h3>XEN Dual Watermark</h3>
+      <p>$5.00</p>
+    </div>
+
+  </div>
 </div>
 
-<!-- PRODUCT: FLYLITE -->
-<div id="flylite" class="page">
-    <div class="product-wrapper">
-        <div class="back" onclick="go('shop')">← Back to Shop</div>
+<!-- OVERLAY -->
+<div id="overlay" class="overlay">
+  <div class="overlay-content">
+    <div class="close" onclick="closeProduct()">← Back to shop</div>
 
-        <div class="product-grid">
-            <div class="product-image">
-                <img src="https://via.placeholder.com/600x800?text=FLYLITE+PACK">
-            </div>
+    <div class="product">
+      <!-- IMAGES -->
+      <div class="images" id="productImages"></div>
 
-            <div class="product-info">
-                <h1>ENXO FLYLITE PACK (AGGRESSIVE)</h1>
-                <div class="price">$10.00</div>
+      <!-- INFO -->
+      <div class="info">
+        <h1 id="productTitle"></h1>
+        <div class="price" id="productPrice"></div>
 
-                <button class="btn add">Add to Cart</button>
-                <button class="btn buy">Buy Now</button>
+        <button class="btn add">Add to Cart</button>
+        <button class="btn buy">Buy Now</button>
 
-                <div class="desc">
-7 CCs  
-Aggressive shakes  
-New zooms  
-FX included  
-EDIT PJF INCLUDED
-                </div>
-            </div>
-        </div>
+        <div class="desc" id="productDesc"></div>
+      </div>
     </div>
-</div>
-
-<!-- PRODUCT: DUAL WM -->
-<div id="dualwm" class="page">
-    <div class="product-wrapper">
-        <div class="back" onclick="go('shop')">← Back to Shop</div>
-        <h1>ENXO Dual Watermark</h1>
-        <p>$5.00</p>
-    </div>
-</div>
-
-<!-- PRODUCT: SWORD WM -->
-<div id="swordwm" class="page">
-    <div class="product-wrapper">
-        <div class="back" onclick="go('shop')">← Back to Shop</div>
-        <h1>ENXO Sword Watermark</h1>
-        <p>$5.00</p>
-    </div>
+  </div>
 </div>
 
 <script>
-function go(page) {
-    location.hash = page;
+const products = {
+  flylite: {
+    title: "XEN FLYLITE PACK (AGGRESSIVE)",
+    price: "$10.00",
+    desc: `7 CCs
+Aggressive shakes
+New zooms
+FX included
+EDIT PJF INCLUDED`,
+    images: [
+      "https://via.placeholder.com/800x1000?text=FLYLITE+1",
+      "https://via.placeholder.com/800x1000?text=FLYLITE+2",
+      "https://via.placeholder.com/800x1000?text=FLYLITE+3"
+    ]
+  },
+  dual: {
+    title: "XEN Dual Watermark",
+    price: "$5.00",
+    desc: "High quality dual watermark pack.",
+    images: [
+      "https://via.placeholder.com/800x1000?text=DUAL+1",
+      "https://via.placeholder.com/800x1000?text=DUAL+2"
+    ]
+  }
+};
+
+function openProduct(key) {
+  const p = products[key];
+  document.getElementById("productTitle").innerText = p.title;
+  document.getElementById("productPrice").innerText = p.price;
+  document.getElementById("productDesc").innerText = p.desc;
+
+  const imgWrap = document.getElementById("productImages");
+  imgWrap.innerHTML = "";
+  p.images.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    imgWrap.appendChild(img);
+  });
+
+  document.getElementById("overlay").classList.add("active");
 }
 
-function render() {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const page = location.hash.replace('#','') || 'shop';
-    document.getElementById(page)?.classList.add('active');
+function closeProduct() {
+  document.getElementById("overlay").classList.remove("active");
 }
-
-window.addEventListener('hashchange', render);
-render();
 </script>
 
 </body>
