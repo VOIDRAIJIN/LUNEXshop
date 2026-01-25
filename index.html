@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>XEN Shop</title>
+<title>ENXO Shop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -14,7 +14,7 @@
 }
 
 body {
-  background: #000;
+  background: #050505;
   color: #fff;
 }
 
@@ -30,7 +30,7 @@ body {
 .nav a {
   color: #fff;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 .nav a:hover {
@@ -51,7 +51,7 @@ body {
 }
 
 .card {
-  background: #0a0a0a;
+  background: #0b0b0b;
   border-radius: 18px;
   padding: 30px;
   text-align: center;
@@ -61,7 +61,7 @@ body {
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 30px rgba(255,255,255,0.12);
+  box-shadow: 0 0 30px rgba(255,255,255,0.08);
 }
 
 .card img {
@@ -73,19 +73,19 @@ body {
 
 .card h3 {
   font-size: 15px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .card p {
   font-size: 14px;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
-/* PRODUCT OVERLAY */
+/* OVERLAY */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.95);
+  background: #070707;
   display: none;
   overflow-y: auto;
   z-index: 1000;
@@ -103,38 +103,53 @@ body {
 
 /* CLOSE */
 .close {
-  font-size: 14px;
+  font-size: 13px;
   opacity: 0.7;
   cursor: pointer;
   margin-bottom: 30px;
 }
 
-/* PRODUCT LAYOUT */
+/* PRODUCT */
 .product {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
 }
 
-/* IMAGE SCROLLER */
-.images {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+/* IMAGE VIEWER */
+.viewer {
+  position: relative;
 }
 
-.images img {
+.viewer img {
   width: 100%;
-  min-width: 100%;
-  border-radius: 16px;
-  scroll-snap-align: center;
+  border-radius: 18px;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.7);
+  border: none;
+  color: white;
+  font-size: 22px;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+.arrow:hover {
+  background: rgba(255,255,255,0.15);
 }
 
 /* INFO */
 .info h1 {
   font-size: 26px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .price {
@@ -149,24 +164,25 @@ body {
   border: none;
   font-size: 14px;
   cursor: pointer;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .add {
-  background: #3556e1;
-  color: #fff;
+  background: #2f49d1;
+  color: white;
 }
 
 .buy {
-  background: #fff;
-  color: #000;
+  background: white;
+  color: black;
 }
 
-.desc {
+/* WHAT IT HAS */
+.contains {
+  margin-top: 30px;
   font-size: 13px;
-  opacity: 0.8;
-  line-height: 1.6;
-  margin-top: 25px;
+  opacity: 0.85;
+  line-height: 1.7;
   white-space: pre-line;
 }
 
@@ -195,13 +211,13 @@ body {
 
     <div class="card" onclick="openProduct('flylite')">
       <img src="XEN PACK.JPG">
-      <h3>XEN Flylite Pack (Aggressive)</h3>
+      <h3>ENXO Flylite Pack</h3>
       <p>$10.00</p>
     </div>
 
     <div class="card" onclick="openProduct('dual')">
       <img src="IMG_9486.jpg">
-      <h3>XEN Dual Watermark</h3>
+      <h3>ENXO Dual Watermark</h3>
       <p>$5.00</p>
     </div>
 
@@ -214,29 +230,36 @@ body {
     <div class="close" onclick="closeProduct()">← Back to shop</div>
 
     <div class="product">
-      <!-- IMAGES -->
-      <div class="images" id="productImages"></div>
+      <!-- IMAGE VIEWER -->
+      <div class="viewer">
+        <button class="arrow left" onclick="prevImage()">‹</button>
+        <img id="viewerImg">
+        <button class="arrow right" onclick="nextImage()">›</button>
+      </div>
 
       <!-- INFO -->
       <div class="info">
-        <h1 id="productTitle"></h1>
-        <div class="price" id="productPrice"></div>
+        <h1 id="title"></h1>
+        <div class="price" id="price"></div>
 
         <button class="btn add">Add to Cart</button>
         <button class="btn buy">Buy Now</button>
 
-        <div class="desc" id="productDesc"></div>
+        <div class="contains" id="contains"></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+let current = {};
+let index = 0;
+
 const products = {
   flylite: {
-    title: "XEN FLYLITE PACK (AGGRESSIVE)",
+    title: "ENXO FLYLITE PACK (AGGRESSIVE)",
     price: "$10.00",
-    desc: `7 CCs
+    contains: `7 CCs
 Aggressive shakes
 New zooms
 FX included
@@ -248,9 +271,11 @@ EDIT PJF INCLUDED`,
     ]
   },
   dual: {
-    title: "XEN Dual Watermark",
+    title: "ENXO Dual Watermark",
     price: "$5.00",
-    desc: "High quality dual watermark pack.",
+    contains: `High quality dual watermark
+Transparent PNG
+Instant download`,
     images: [
       "IMG_9486.jpg",
       "https://via.placeholder.com/800x1000?text=DUAL+2"
@@ -259,24 +284,27 @@ EDIT PJF INCLUDED`,
 };
 
 function openProduct(key) {
-  const p = products[key];
-  document.getElementById("productTitle").innerText = p.title;
-  document.getElementById("productPrice").innerText = p.price;
-  document.getElementById("productDesc").innerText = p.desc;
-
-  const imgWrap = document.getElementById("productImages");
-  imgWrap.innerHTML = "";
-  p.images.forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    imgWrap.appendChild(img);
-  });
-
+  current = products[key];
+  index = 0;
+  document.getElementById("title").innerText = current.title;
+  document.getElementById("price").innerText = current.price;
+  document.getElementById("contains").innerText = current.contains;
+  document.getElementById("viewerImg").src = current.images[index];
   document.getElementById("overlay").classList.add("active");
 }
 
 function closeProduct() {
   document.getElementById("overlay").classList.remove("active");
+}
+
+function nextImage() {
+  index = (index + 1) % current.images.length;
+  document.getElementById("viewerImg").src = current.images[index];
+}
+
+function prevImage() {
+  index = (index - 1 + current.images.length) % current.images.length;
+  document.getElementById("viewerImg").src = current.images[index];
 }
 </script>
 
