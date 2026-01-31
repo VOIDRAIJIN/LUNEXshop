@@ -278,9 +278,9 @@ function updateMedia() {
     // Video
     const video = document.createElement('video');
     video.controls = true;
-    video.autoplay = false;
+    video.autoplay = true;
     video.muted = false;          // User can unmute if wanted
-    video.loop = false;
+    video.loop = true;
     video.innerHTML = `<source src="${src}" type="video/mp4">Your browser does not support the video tag.`;
     container.appendChild(video);
   } else {
